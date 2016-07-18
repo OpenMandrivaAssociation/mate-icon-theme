@@ -2,8 +2,8 @@
 
 Summary:	MATE default icons
 Name:		mate-icon-theme
-Version:	1.8.0
-Release:	2
+Version:	1.14.0
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://mate-desktop.org
@@ -16,14 +16,6 @@ Requires:	hicolor-icon-theme
 
 %description
 MATE default icons
-
-%package devel
-Summary:	The pkgconfig for %{name}
-Group:		Development/C
-Requires:	%{name} = %{version}-%{release}
-
-%description devel
-The pkgconfig for %{name}.
 
 %prep
 %setup -q
@@ -70,7 +62,5 @@ chmod 755 %{buildroot}%{_var}/lib/rpm/filetriggers/gtk-icon-cache-mate.script
 %{_iconsdir}/menta/*x*
 %ghost %{_iconsdir}/mate/icon-theme.cache
 %{_var}/lib/rpm/filetriggers/gtk-icon-cache-mate.*
-
-%files devel
-%{_datadir}/pkgconfig/%{name}.pc
+%{_iconsdir}/mate/scalable-up-to-32
 
