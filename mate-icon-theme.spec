@@ -2,12 +2,12 @@
 
 Summary:	MATE default icons
 Name:		mate-icon-theme
-Version:	1.14.0
+Version:	1.18.2
 Release:	1
-License:	GPLv2+
+License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/GNOME
-Url:		http://mate-desktop.org
-Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
+Url:		https://mate-desktop.org
+Source0:	https://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 BuildArch:	noarch
 BuildRequires:	icon-naming-utils
 BuildRequires:	intltool
@@ -19,12 +19,12 @@ MATE default icons
 
 %prep
 %setup -q
-NOCONFIGURE=yes ./autogen.sh
 
 %build
-%configure2_5x \
-	--enable-icon-mapping
-
+#NOCONFIGURE=yes ./autogen.sh
+%configure \
+	--enable-icon-mapping \
+	%{nil}
 %make
 
 %install
@@ -55,6 +55,7 @@ chmod 755 %{buildroot}%{_var}/lib/rpm/filetriggers/gtk-icon-cache-mate.script
 
 %files
 %doc README TODO
+%doc COPYING AUTHORS TODO README
 %dir %{_iconsdir}/mate
 %{_iconsdir}/mate/*x*
 %{_iconsdir}/mate/scalable
