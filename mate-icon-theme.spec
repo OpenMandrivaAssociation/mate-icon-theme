@@ -35,6 +35,7 @@ This package provides the MATE default icons.
 %dir %{_iconsdir}/menta
 %{_iconsdir}/menta/*x*
 %ghost %{_iconsdir}/mate/icon-theme.cache
+%ghost %{_iconsdir}/menta/icon-theme.cache
 %{_var}/lib/rpm/filetriggers/gtk-icon-cache-mate.*
 %{_iconsdir}/mate/scalable-up-to-32
 
