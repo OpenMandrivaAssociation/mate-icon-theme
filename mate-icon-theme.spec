@@ -4,7 +4,7 @@ Summary:	MATE default icons
 Name:		mate-icon-theme
 Version:	1.18.2
 Release:	1
-License:	GPLv2+ and LGPLv2+
+License:	GPLv3 or CC-BY-SA
 Group:		Graphical desktop/GNOME
 Url:		https://mate-desktop.org
 Source0:	https://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
