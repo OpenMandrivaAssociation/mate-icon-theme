@@ -2,34 +2,60 @@
 
 Summary:	MATE default icons
 Name:		mate-icon-theme
-Version:	1.14.0
+Version:	1.18.2
 Release:	1
-License:	GPLv2+
+License:	GPLv3 or CC-BY-SA
 Group:		Graphical desktop/GNOME
-Url:		http://mate-desktop.org
-Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
+Url:		https://mate-desktop.org
+Source0:	https://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 BuildArch:	noarch
+
 BuildRequires:	icon-naming-utils
 BuildRequires:	intltool
 BuildRequires:	mate-common
+
 Requires:	hicolor-icon-theme
 
 %description
-MATE default icons
+The MATE Desktop Environment is the continuation of GNOME 2. It provides an
+intuitive and attractive desktop environment using traditional metaphors for
+Linux and other Unix-like operating systems.
+
+MATE is under active development to add support for new technologies while
+preserving a traditional desktop experience.
+
+This package provides the MATE default icons.
+
+%files
+%doc README TODO
+%doc COPYING AUTHORS TODO README
+%dir %{_iconsdir}/mate
+%{_iconsdir}/mate/*x*
+%{_iconsdir}/mate/scalable
+%dir %{_iconsdir}/menta
+%{_iconsdir}/menta/*x*
+%ghost %{_iconsdir}/mate/icon-theme.cache
+%ghost %{_iconsdir}/menta/icon-theme.cache
+%{_var}/lib/rpm/filetriggers/gtk-icon-cache-mate.*
+%{_iconsdir}/mate/scalable-up-to-32
+
+#---------------------------------------------------------------------------
 
 %prep
 %setup -q
-NOCONFIGURE=yes ./autogen.sh
 
 %build
-%configure2_5x \
-	--enable-icon-mapping
-
+#NOCONFIGURE=yes ./autogen.sh
+%configure \
+	--enable-icon-mapping \
+	%{nil}
 %make
 
 %install
 %makeinstall_std
+
 touch %{buildroot}%{_iconsdir}/mate/icon-theme.cache
+touch %{buildroot}%{_iconsdir}/menta/icon-theme.cache
 
 # automatic gtk icon cache update on rpm installs/removals
 # (see http://wiki.mandriva.com/en/Rpm_filetriggers)
@@ -45,22 +71,11 @@ if [ -x /usr/bin/gtk-update-icon-cache ]; then
   /usr/bin/gtk-update-icon-cache --force --quiet /usr/share/icons/menta
 fi
 EOF
-chmod 755 %{buildroot}%{_var}/lib/rpm/filetriggers/gtk-icon-cache-mate.script
+chmod 0755 %{buildroot}%{_var}/lib/rpm/filetriggers/gtk-icon-cache-mate.script
 
 %post
 %update_icon_cache mate menta
 
 %postun
 %clean_icon_cache mate menta
-
-%files
-%doc README TODO
-%dir %{_iconsdir}/mate
-%{_iconsdir}/mate/*x*
-%{_iconsdir}/mate/scalable
-%dir %{_iconsdir}/menta
-%{_iconsdir}/menta/*x*
-%ghost %{_iconsdir}/mate/icon-theme.cache
-%{_var}/lib/rpm/filetriggers/gtk-icon-cache-mate.*
-%{_iconsdir}/mate/scalable-up-to-32
 
