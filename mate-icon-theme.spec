@@ -2,7 +2,7 @@
 
 Summary:	MATE default icons
 Name:		mate-icon-theme
-Version:	1.20.0
+Version:	1.20.3
 Release:	1
 License:	GPLv3 or CC-BY-SA
 Group:		Graphical desktop/GNOME
@@ -49,10 +49,10 @@ This package provides the MATE default icons.
 %configure \
 	--enable-icon-mapping \
 	%{nil}
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 touch %{buildroot}%{_iconsdir}/mate/icon-theme.cache
 touch %{buildroot}%{_iconsdir}/menta/icon-theme.cache
