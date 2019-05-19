@@ -2,5 +2,6 @@ removed_sources:
   mate-icon-theme-1.14.0.tar.xz: fc59d0763cb8b1405e6b9004aabc672f27215a6a
   mate-icon-theme-1.18.2.tar.xz: f5fd084b18edf27f7522839361683371fdd565c9
   mate-icon-theme-1.20.0.tar.xz: 4b04f3acc6106876f646fd42cfb5b339dd969bb9
-sources:
   mate-icon-theme-1.20.3.tar.xz: aba77fd3bad87e769b46f23e5a9e5b34a2b7b6be
+sources:
+  mate-icon-theme-1.22.1.tar.xz: 665ddfce6256e77f99b2a80484415107e8e3921e
