@@ -14,7 +14,6 @@ BuildRequires:	autoconf-archive
 BuildRequires:	icon-naming-utils
 BuildRequires:	intltool
 BuildRequires:	mate-common
-
 Requires:	hicolor-icon-theme
 
 %description
@@ -28,7 +27,6 @@ preserving a traditional desktop experience.
 This package provides the MATE default icons.
 
 %files
-%doc README TODO
 %doc COPYING AUTHORS TODO README
 %dir %{_iconsdir}/mate
 %{_iconsdir}/mate/*x*
@@ -37,13 +35,12 @@ This package provides the MATE default icons.
 %{_iconsdir}/menta/*x*
 %ghost %{_iconsdir}/mate/icon-theme.cache
 %ghost %{_iconsdir}/menta/icon-theme.cache
-%{_var}/lib/rpm/filetriggers/gtk-icon-cache-mate.*
 %{_iconsdir}/mate/scalable-up-to-32
 
 #---------------------------------------------------------------------------
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 #NOCONFIGURE=yes ./autogen.sh
@@ -58,25 +55,4 @@ This package provides the MATE default icons.
 touch %{buildroot}%{_iconsdir}/mate/icon-theme.cache
 touch %{buildroot}%{_iconsdir}/menta/icon-theme.cache
 
-# automatic gtk icon cache update on rpm installs/removals
-# (see http://wiki.mandriva.com/en/Rpm_filetriggers)
-install -d %{buildroot}%{_var}/lib/rpm/filetriggers
-cat > %{buildroot}%{_var}/lib/rpm/filetriggers/gtk-icon-cache-mate.filter << EOF
-^./usr/share/icons/mate/
-^./usr/share/icons/menta/
-EOF
-cat > %{buildroot}%{_var}/lib/rpm/filetriggers/gtk-icon-cache-mate.script << EOF
-#!/bin/sh
-if [ -x /usr/bin/gtk-update-icon-cache ]; then 
-  /usr/bin/gtk-update-icon-cache --force --quiet /usr/share/icons/mate
-  /usr/bin/gtk-update-icon-cache --force --quiet /usr/share/icons/menta
-fi
-EOF
-chmod 0755 %{buildroot}%{_var}/lib/rpm/filetriggers/gtk-icon-cache-mate.script
-
-%post
-%update_icon_cache mate menta
-
-%postun
-%clean_icon_cache mate menta
 
