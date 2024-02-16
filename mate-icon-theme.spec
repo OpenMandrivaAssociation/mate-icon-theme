@@ -1,13 +1,13 @@
-%define url_ver %(echo %{version}|cut -d. -f1,2)
+%define mate_ver	%(echo %{version}|cut -d. -f1,2)
 
 Summary:	MATE default icons
 Name:		mate-icon-theme
-Version:	1.26.0
-Release:	2
+Version:	1.28.0
+Release:	1
 License:	GPLv3 or CC-BY-SA
 Group:		Graphical desktop/GNOME
 Url:		https://mate-desktop.org
-Source0:	https://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
+Source0:	https://pub.mate-desktop.org/releases/%{mate_ver}/%{name}-%{version}.tar.xz
 BuildArch:	noarch
 
 BuildRequires:	autoconf-archive
@@ -27,7 +27,8 @@ preserving a traditional desktop experience.
 This package provides the MATE default icons.
 
 %files
-%doc COPYING AUTHORS TODO README
+%license COPYING
+%doc AUTHORS TODO README
 %dir %{_iconsdir}/mate
 %{_iconsdir}/mate/*x*
 %{_iconsdir}/mate/scalable
@@ -54,5 +55,4 @@ This package provides the MATE default icons.
 
 touch %{buildroot}%{_iconsdir}/mate/icon-theme.cache
 touch %{buildroot}%{_iconsdir}/menta/icon-theme.cache
-
 
