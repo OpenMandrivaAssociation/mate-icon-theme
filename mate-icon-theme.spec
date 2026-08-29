@@ -14,6 +14,7 @@ BuildRequires:	automake
 BuildRequires:	libtool-base
 BuildRequires:	slibtool
 BuildRequires:	make
+BuildRequires:	gettext
 BuildRequires:	autoconf-archive
 BuildRequires:	icon-naming-utils
 BuildRequires:	intltool
