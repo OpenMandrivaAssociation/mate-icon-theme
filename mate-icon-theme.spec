@@ -50,9 +50,14 @@ This package provides the MATE default icons.
 
 %build
 #NOCONFIGURE=yes ./autogen.sh
-%configure \
-	--enable-icon-mapping \
-	%{nil}
+# (Angry P) Out of tree build, so we need to call ./configure directly. Additionally, force Clang.
+# this fixing: make[1]: *** No rule to make target '/config.status', needed by 'Makefile'.  Stop.
+export CC=clang
+export CXX=clang++
+./configure \
+    --prefix=%{_prefix} \
+    --libdir=%{_libdir} \
+	--enable-icon-mapping
 %make_build
 
 %install
